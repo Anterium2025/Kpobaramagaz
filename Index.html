@@ -62,3 +62,126 @@
     <script src="script.js"></script> <!-- Подключите файл JavaScript -->
 </body>
   </html>
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+#products h2 {
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}document.addEventListener('DOMContentLoaded', function() {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const cartItemsList = document.getElementById('cart-items');
+    const cartTotalElement = document.getElementById('cart-total');
+    const cartCountElement = document.getElementById('cart-count');
+    let cart = []; // Array to store cart items
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            //In a real store, you would get product details from a database
+            const product = {
+                id: productId,
+                name: this.parentNode.querySelector('h3').textContent,
+                price: parseFloat(this.parentNode.querySelector('.price').textContent),
+                quantity: 1
+            };
+
+            let itemInCart = cart.find(item => item.id === product.id);
+
+            if (itemInCart) {
+                itemInCart.quantity++;
+            } else {
+                cart.push(product);
+            }
+
+            updateCart();
+        });
+    });
+
+    function updateCart() {
+        cartItemsList.innerHTML = '';
+        let total = 0;
+        let count = 0;
+
+        cart.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.name} x ${item.quantity} - ${item.price * item.quantity} капи-рублей`;
+            cartItemsList.appendChild(listItem);
+            total += item.price * item.quantity;
+            count += item.quantity;
+        });
+
+        cartTotalElement.textContent = `Общая сумма: ${total} капи-рублей`;
+        cartCountElement.textContent = count;
+    }
+});

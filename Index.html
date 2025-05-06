@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Капибария Интернет-Магазин</title>
+    <link rel="stylesheet" href="style.css"> <!-- Подключите файл стилей CSS -->
+</head>
+<body>
+    <header>
+        <h1>Капибария Интернет-Магазин</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Товары</a></li>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Корзина (<span id="cart-count">0</span>)</a></li> <!-- JavaScript для обновления количества -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="products">
+            <h2>Товары</h2>
+            <div class="product-grid">
+                <!-- Здесь будут динамически генерироваться карточки товаров (JavaScript) -->
+                <div class="product-card">
+                    <img src="images/кофе.jpg" alt="Капи-Кофе">
+                    <h3>Капи-Кофе</h3>
+                    <p>Бодрящий напиток для энергичных капибар!</p>
+                    <p class="price">150 капи-рублей</p>
+                    <button class="add-to-cart" data-product-id="капи-кофе">В корзину</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="images/плащ.jpg" alt="Плащ-Капибара">
+                    <h3>Плащ-Капибара</h3>
+                    <p>Стильный плащ для дождливых дней.</p>
+                    <p class="price">500 капи-рублей</p>
+                    <button class="add-to-cart" data-product-id="плащ-капибара">В корзину</button>
+                </div>
+
+                <!-- Другие товары -->
+            </div>
+        </section>
+
+        <section id="cart" style="display: none;"> <!-- Скрываем корзину по умолчанию -->
+            <h2>Корзина</h2>
+            <ul id="cart-items">
+                <!-- Здесь будут отображаться товары в корзине (JavaScript) -->
+            </ul>
+            <p id="cart-total">Общая сумма: 0 капи-рублей</p>
+            <button id="checkout">Оформить заказ</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Капибария Интернет-Магазин</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Подключите файл JavaScript -->
+</body>
+  </html>
